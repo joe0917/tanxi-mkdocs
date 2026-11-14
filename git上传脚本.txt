@@ -1,0 +1,36 @@
+1. 添加客户端remote
+（现在C:\Users\chy\.ssh\ 中设置）
+1.1 tailscale连接时（origin）
+git remote add origin git@gitea:chy/history.git
+1.2 局域网31.160连接时（gitea-lan）
+git remote add gitea-lan git@gitea-local:chy/history.git
+
+（git remote -v，查看git连接情况。）
+
+2. 加入缓存
+git add .
+
+3. 备注本次提交
+git commit -m"备注内容"
+
+4. 提交
+4.1 origin提交：
+git push -u origin main
+4.2 gitea-lan提交：
+git push gitea-lan main
+
+-------------
+历次提交
+-------------
+20260725
+git commit -m"框架优化"
+20260830
+git commit -m"“04-传”初步完成"
+20260923
+git commit -m"“世系图”初步完成"
+20261009
+git commit -m"平湖派20世行传完成"
+20261114
+git commit -m"mkdocs网站构建"
+
+访问地址：

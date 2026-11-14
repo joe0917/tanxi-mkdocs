@@ -1,0 +1,33 @@
+name: Build and Deploy MkDocs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '檀溪陈氏宗谱20260209/**'
+      - 'mkdocs.yml'
+      - 'requirements.txt'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+      - name: Build site
+        run: mkdocs build
+
+      - name: Deploy to Baota web root
+        run: |
+          rm -rf /www/wwwroot/mkdocs-tanxichen/*
+          cp -r site/* /www/wwwroot/mkdocs-tanxichen/

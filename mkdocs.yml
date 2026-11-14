@@ -1,0 +1,83 @@
+site_name: 浦陽檀溪陳氏宗譜
+# site_name：网站名称（唯一必填项），显示在页面标题和导航栏。
+site_description: 浦阳檀溪陈氏宗谱谱首
+# site_description：站点描述，用于 SEO 的 meta 标签。
+docs_dir: 檀溪陈氏宗谱20260209
+
+theme:
+    name: material
+    locale: zh
+#    language: zh   # 简体中文
+    language: zh-Hant   # 繁体中文
+    navigation_depth: 4
+# navigation_depth: 3：侧边栏导航最多展开 3 层。
+#    logo: img/logo_escriptorium_documentation.png
+# logo：站点 logo 图片路径，相对于 docs/ 目录。
+
+plugins:
+    - search
+    - awesome-pages:
+        collapse_single_pages: true
+    - ezlinks:
+        wikilinks: true
+# awesome-pages：根据 docs/ 目录结构自动生成导航。
+# collapse_single_pages: true：当某个文件夹内只有一个 md 文件时，导航中直接显示该页面，不再多套一层文件夹。
+# ezlinks：调用mkdocs-wikilinks-plugin插件，自动转换md文件中的wiki
+# 注意：本文件中不再定义 nav，否则插件不会接管导航生成。
+
+markdown_extensions:
+    - abbr
+    - admonition
+    - footnotes
+    - md_in_html
+    - sane_lists
+    - smarty
+    - tables
+    - toc:
+        permalink: true
+    - pymdownx.details
+    - pymdownx.smartsymbols
+    - pymdownx.highlight:
+        linenums: true
+    - pymdownx.arithmatex:
+        generic: true
+    - pymdownx.keys:
+        separator: "\uff0b"
+        key_map: {
+                'alt': '⎇ ALt',
+                'left-alt': '⎇ Left ALt',
+                'right-alt': '⎇ Right ALt',
+                'command': '⌘ Command',
+                'left-command': '⌘ Command',
+                'right-command': '⌘ Command',
+                'control': '⌃Ctrl',
+                'left-control': '⌃Ctrl',
+                'right-control': '⌃Ctrl',
+                'shift': '⇧ Shift',
+                'left-shift': '⇧ Left Shift',
+                'right-shift': '⇧ Right Shift',
+                'windows': '⊞ Win',
+                'left-windows': '⊞ Win',
+                'right-windows': '⊞ Win',
+                'arrow-down': '↓ Down',
+                'arrow-left': '← Left',
+                'arrow-right': '→ Right',
+                'arrow-up': '↑ Up',
+                'backspace': '⌫ Backspace',
+                'backtab': '⇤ Back Tab',
+                'caps-lock': '⇪ Caps Lock',
+                'clear': '⌧ Clr',
+                'delete': '⌦ Del',
+                'end': '⤓ End',
+                'escape': '⎋ Esc',
+                'home': '⤒ Home',
+                'page-down': '⇟ Page Down',
+                'page-up': '⇞ Page Up',
+                'tab': 'Tab ⇥',
+                'enter': 'Enter ⏎',
+                'left-button': '→🖰 Left Click',
+                'right-button': '🖰← Right Click'
+            }
+
+extra_css:
+  - stylesheets/extra.css

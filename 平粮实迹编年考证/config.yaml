@@ -1,0 +1,21 @@
+input-files:
+  - inputs/0前言.md 
+  - inputs/1原序.md
+  - inputs/2明朝嘉靖_均粮国策.md
+  - inputs/3扎例下达_科则均平.md
+  - inputs/4均中不均_文济上告.md
+  - inputs/5执结平粮_案定如山.md
+  - inputs/6仕正舍义_告官贪饕.md
+  - inputs/7昌言上书_粮额复旧.md
+  - inputs/8停搁不行_两乡民变.md
+  - inputs/9八四上奏_许县难办.md
+  - inputs/10九经上疏_一锤定音.md
+  - inputs/11平粮再起.md
+  - inputs/12后记.md
+resource-path:
+  - inputs/sample3_科技文章   #md内容中的图片资源
+  - inputs/images   #md内容中的图片资源
+  - templates/images #tex模版中的图片资源
+template: templates/template.tex
+filters:
+  - filters/my-filter.lua

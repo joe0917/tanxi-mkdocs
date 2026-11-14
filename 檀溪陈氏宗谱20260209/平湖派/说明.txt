@@ -1,0 +1,34 @@
+【node】第4行优先顺序：
+1-迁居地
+2-“又名”
+3-字
+
+迁居node属性：
+color="crimson"penwidth="2"外框绯红（出征将士20250325）
+
+style="filled"fillcolor="green"
+
+分派属性（之揚派，之漢派）：
+style="filled"fillcolor="grey"fontcolor="darkgreen"
+
+2005版新增node属性（民國庚辰版未有）：
+fontcolor="darkgreen"
+
+不传（30世后）属性：
+style="filled"fillcolor="grey"
+
+出继：
+1-承继edge，（仅用于出继方（生父）不在图中时。当图中有出继edge时，承继不写）
+“External Label”：承继
+
+2-出继edge，
+“External Label”：出继。“Style Name”：Flow - Dashed
+
+1-18世，根据行传数据库生成。
+18-30世只记录有后世，或者有迁外地的。
+31世，全部记录。
+32世，只记录“老谱续”部分.（excel蓝色填充标记）
+33世，只记录老谱中有32世者。（excel紫色填充标记）
+34世，原则上不记录。
+
+荣桃（本支）以下全记录

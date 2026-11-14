@@ -1,0 +1,271 @@
+% 使用 ctexart 文档类，专为中英文混排设计
+\documentclass[UTF8, a4paper, zihao=-4, twoside]{ctexart}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, inner=1in,outer=1.5in, top=1.2in, bottom=1.2in}
+
+% 修复 passthrough 命令问题
+\newcommand{\passthrough}[1]{#1} % 定义缺失的 passthrough 命令
+
+% 中英文字体配置
+\usepackage{fontspec}
+\setCJKmainfont{SimSun}
+\setmainfont{Times New Roman}
+
+% 图形和颜色
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty} % 移除图片编号
+\usepackage{grffile}
+
+% 超链接和参考文献
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+\usepackage{bookmark}
+
+% 数学公式
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+
+% 列表
+\usepackage{multirow}
+\usepackage{enumitem}
+\setlist{nosep}
+
+% 代码列表 - 使用 listings 包处理代码块
+\usepackage{listings}
+\usepackage{inconsolata}
+
+% 页眉页脚
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% 表格支持包
+\usepackage{array}        % 增强表格功能
+\usepackage{longtable}    % 支持跨页长表格
+\usepackage{booktabs}     % 美化表格线
+\usepackage{calc}         % 支持计算功能（用于列宽计算）
+\usepackage{ragged2e}     % 更好的文本对齐控制
+% 处理 \real 命令（如果未定义）
+\ifdefined\real\else
+\newcommand{\real}[1]{#1} % 简单的替代定义
+\fi
+% 确保表格中的中文正确换行
+\usepackage{makecell}     % 提供更好的单元格控制
+\renewcommand\theadfont{\bfseries} % 表头字体
+
+% 段落间距设置
+\usepackage{parskip}
+\setlength{\parskip}{0.5\baselineskip plus 0.1\baselineskip minus 0.05\baselineskip}
+
+% 设置图片位置优先选项
+\makeatletter
+\def\fps@figure{htb} % 优先级：这里(h) > 顶部(t) > 底部(b) > 单独页(p)
+\def\fps@table{htbp}
+\makeatother
+
+% 其他实用包
+\usepackage{titlesec}
+%\newcommand{\sectionbreak}{\clearpage} %所有一级标题（\section）从新页面开始
+\usepackage{setspace}
+\onehalfspacing % 行距设置\onehalfspacing\singlespacing\doublespacing
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+
+% 颜色定义
+\definecolor{codebg}{RGB}{240, 240, 240} % 深灰
+\definecolor{keyword}{RGB}{0, 0, 128} % 浅蓝
+\definecolor{comment}{RGB}{128, 128, 128} % 灰色
+\definecolor{string}{RGB}{128, 0, 0} % 浅红
+\definecolor{bluecolor}{RGB}{0,0,255} % 蓝色
+
+
+% 如果input.md标题区有内容，则生成标题区（封面）。
+
+$if(title)$
+\title{$title$}
+$endif$
+$if(author)$
+\author{$author$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+
+
+% 设置标题编号和目录深度
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+% 处理内联代码
+\usepackage{fancyvrb}
+\newcommand{\inlinecode}[1]{\texttt{#1}}
+
+% 页眉页脚设置（奇偶数也不同）
+\pagestyle{fancy}
+\fancyhf{}% 清除所有页眉页脚设置
+\fancyhead[LO]{\leftmark}%奇数页左侧-标题
+\fancyhead[RE]{\leftmark}%偶数页右侧-标题
+\fancyhead[RO]{\thepage}%奇数页右侧-页码
+\fancyhead[LE]{\thepage}%偶数页左侧-页码
+\renewcommand{\headrulewidth}{0.4pt}% 页眉横线
+\renewcommand{\footrulewidth}{0pt}% 页脚横线
+
+% 设置所有section从奇数页开始
+\pretocmd{\section}{\cleardoublepage}{}{}
+
+% 设置目录和页码
+\makeatletter
+\renewcommand{\tableofcontents}{%
+	\clearpage
+	\pagenumbering{roman} % 目录使用罗马数字页码
+	\section*{\contentsname}
+	\@starttoc{toc}%
+	\cleardoublepage% 结束当前页，确保正文从新的一页开始（通常是奇数页）
+	\pagenumbering{arabic} % 正文使用阿拉伯数字页码
+	\setcounter{page}{1}   % 从1开始编号
+}
+\makeatother
+
+% 重新定义标题编号格式
+\renewcommand{\thesection}{\chinese{section}} % 一级标题用中文数字
+\renewcommand{\thesubsection}{\arabic{subsection}} % 二级标题用阿拉伯数字
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}} % 三级标题用阿拉伯数字
+
+\ctexset{
+	section = {
+		format = \centering\zihao{-3},
+		number = \thesection, % 显示中文序号
+		name = {,}, % 设置标题名称格式
+		beforeskip = 2.0ex plus 0.2ex minus .2ex,
+		afterskip = 2.0ex plus 0.2ex minus .2ex
+	},
+	subsection = {
+		format = \raggedright\zihao{-4}\bfseries, % 强制首行缩进2字符
+		number = \thesubsection, % 显示二级标题序号
+		name = {（,）}, % 取消名称
+		beforeskip = 0.5ex plus 0.2ex minus .2ex,
+		afterskip = 0.5ex plus 0.2ex minus .2ex,
+		indent = 2em, % 首行缩进
+	},
+	subsubsection = {
+		format = \raggedright\zihao{-4},
+		number = \thesubsubsection, % 显示三级标题序号（仅阿拉伯数字）
+		name = {,.}, % 取消名称
+		beforeskip = 0.2ex plus 0.2ex minus .2ex,
+		afterskip = 0.2ex plus 0.2ex minus .2ex,
+		indent = 2em, % 首行缩进
+	}
+}
+
+% 设置四级标题paragraph格式
+
+\titleformat{\paragraph}[block]
+{\normalfont\normalsize\fangsong} % 蓝色仿宋，不加粗
+{}{0em}{} % 无序号
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% 保持subparagraph格式不变
+\titleformat{\subparagraph}[block]{\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}{\parindent}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% 列表缩进
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+%自定义环境（md中div块转换）
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% 定义important环境
+
+\newenvironment{important}
+{%
+	\begin{tcolorbox}[
+		%		colback=black!5!white,
+		%		colframe=white!50!black,
+		breakable=true,            % 允许跨页
+		blanker,                   % 外框行状，可选sharp corners
+		%		boxrule=0.5pt,
+		left=2em,                  % 边框与文本空隙-左
+		right=0em,                 % 边框与文本空隙-右
+		top=5pt,                   % 边框与文本空隙-上
+		bottom=5pt,                % 边框与文本空隙-下
+		%		fontupper=\bfseries
+		]
+		\color{black}              % 字体颜色
+		\kaishu\zihao{-4}         %
+		\setlength{\parindent}{2em}% 首行缩进
+	}
+	{%
+	\end{tcolorbox}%
+}
+
+% 定义“人物”环境
+\newenvironment{renwu}
+{%
+	\begin{tcolorbox}[
+		%		colback=black!5!white,
+		%		colframe=white!50!black,
+		breakable=true,            % 允许跨页
+		blanker,                   % 外框行状，可选sharp corners
+		%		boxrule=0.5pt,
+		left=2em,                  % 边框与文本空隙-左
+		right=0em,                 % 边框与文本空隙-右
+		top=0pt,                   % 边框与文本空隙-上
+		bottom=0pt,                % 边框与文本空隙-下
+		%		fontupper=\bfseries
+		]
+		\color{gray}              % 字体颜色
+		\fangsong\zihao{-4}         %
+		\setlength{\parindent}{2em}% 首行缩进
+	}
+	{%
+	\end{tcolorbox}%
+}
+
+
+% 定义regular环境
+\newenvironment{regular}
+{%
+	\fangsong\zihao{-4}%
+	\setlength{\parindent}{2em}%
+	\setlength{\parskip}{0.5\baselineskip}%
+	\linespread{1.2}%
+}
+{}
+
+% 定义quoteformat环境
+\newenvironment{quoteformat}
+{%
+	\fangsong\zihao{5}%
+	\setlength{\parindent}{1em}%
+	\setlength{\leftmargin}{2em}%失效
+	\setlength{\rightmargin}{2em}%失效
+	\linespread{1.1}%
+	\color{blue}%
+	\itshape%斜体
+}
+{}
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(toc)$
+\tableofcontents
+$endif$
+
+% 目录
+\tableofcontents
+
+% 主内容区域
+
+$body$
+
+\end{document}

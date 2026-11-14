@@ -1,0 +1,12 @@
+- 打开docker desktop
+
+- cd 到本目录
+cd D:\CHY\Desktop\History
+
+`docker run --rm -it -p 8000:8000 -v "%cd%":/docs my-mkdocs serve --dev-addr=0.0.0.0:8000`
+
+- 访问：http://localhost:8000
+
+详细查看：
+D:\CHY\Desktop\Study\20261027mkdocs文档网站
+
