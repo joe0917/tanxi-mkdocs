@@ -80,4 +80,4 @@ markdown_extensions:
             }
 
 extra_css:
-  - stylesheets/extra.css
+  - stylesheets/extra.css# trigger test Sat Nov 14 17:44:03     2026
