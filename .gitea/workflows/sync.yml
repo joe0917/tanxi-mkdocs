@@ -14,7 +14,11 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Show workspace
+      - name: Clone from Gitea
+        run: |
+          git clone http://192.168.31.160:3000/chy/history.git .
+
+      - name: Verify workspace
         run: |
           pwd
           ls -la
