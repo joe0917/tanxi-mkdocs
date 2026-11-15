@@ -1,0 +1,26 @@
+name: Sync source files to Baota
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '檀溪陈氏宗谱20260209/**'
+      - 'mkdocs.yml'
+      - 'requirements.txt'
+      - 'Dockerfile'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Copy source files to Baota
+        run: |
+          rm -rf /www/wwwroot/mkdocs-src/*
+          cp -r 檀溪陈氏宗谱20260209 /www/wwwroot/mkdocs-src/
+          cp mkdocs.yml /www/wwwroot/mkdocs-src/
+          cp requirements.txt /www/wwwroot/mkdocs-src/
+          cp Dockerfile /www/wwwroot/mkdocs-src/

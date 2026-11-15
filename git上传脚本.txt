@@ -33,4 +33,9 @@ git commit -m"平湖派20世行传完成"
 20261114
 git commit -m"mkdocs网站构建"
 
-访问地址：
+真实提交测试
+# 任选一个，比如改 mkdocs.yml 加个注释
+echo "# trigger test $(date)" >> mkdocs.yml
+git add mkdocs.yml
+git commit -m "test workflow trigger via mkdocs.yml"
+git push gitea-lan main
