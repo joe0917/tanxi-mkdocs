@@ -1,7 +1,5 @@
 site_name: 浦陽檀溪陳氏宗譜
-# site_name：网站名称（唯一必填项），显示在页面标题和导航栏。
 site_description: 浦阳檀溪陈氏宗谱谱首
-# site_description：站点描述，用于 SEO 的 meta 标签。
 docs_dir: 檀溪陈氏宗谱20260209
 site_url: https://joe0917.github.io/tanxi-mkdocs/
 
@@ -11,9 +9,8 @@ theme:
 #    language: zh   # 简体中文
     language: zh-Hant   # 繁体中文
     navigation_depth: 4
-# navigation_depth: 3：侧边栏导航最多展开 3 层。
-#    logo: img/logo_escriptorium_documentation.png
-# logo：站点 logo 图片路径，相对于 docs/ 目录。
+    features:
+      - navigation.indexes
 
 plugins:
     - search
@@ -21,10 +18,7 @@ plugins:
         collapse_single_pages: true
     - ezlinks:
         wikilinks: true
-# awesome-pages：根据 docs/ 目录结构自动生成导航。
-# collapse_single_pages: true：当某个文件夹内只有一个 md 文件时，导航中直接显示该页面，不再多套一层文件夹。
-# ezlinks：调用mkdocs-wikilinks-plugin插件，自动转换md文件中的wiki
-# 注意：本文件中不再定义 nav，否则插件不会接管导航生成。
+    - open-in-new-tab
 
 markdown_extensions:
     - abbr
