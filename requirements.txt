@@ -1,3 +1,4 @@
 mkdocs-material
 mkdocs-awesome-pages-plugin
 mkdocs-wikilinks-plugin
+open-in-new-tab
