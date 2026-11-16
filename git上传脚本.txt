@@ -1,3 +1,5 @@
+## 20261116，改用push.bat脚本上传。
+
 1. 添加远程remote
 （先在C:\Users\chy\.ssh\ 中设置Host）
 1.1 tailscale连接时（origin）
