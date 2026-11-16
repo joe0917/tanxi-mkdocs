@@ -30,7 +30,7 @@ jobs:
             -v ${{ github.workspace }}:/docs \
             -w /docs \
             my-mkdocs-builder \
-            mkdocs build --clean
+            build --clean
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
