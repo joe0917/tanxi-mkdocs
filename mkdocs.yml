@@ -8,7 +8,7 @@ theme:
     locale: zh
 #    language: zh   # 简体中文
     language: zh-Hant   # 繁体中文
-    navigation_depth: 4
+    navigation_depth: 3
     features:
       - navigation.indexes
 
